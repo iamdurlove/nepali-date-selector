@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useMemo } from "react"
-import "../NepaliDatePicker.scss"
+import "../NepaliDateSelector.scss"
 import { ConfigProvider } from "./Config"
 import NepaliDatePicker from "./NepaliDateSelector"
 import { ENGLISH, INepaliDatePicker, NEPALI, NepaliDatePickerProps } from "./Types"

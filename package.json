@@ -1,0 +1,107 @@
+{
+    "name": "nepali-date-selector",
+    "version": "1.1.7",
+    "description": "Nepali Date Selector(Bikram Sambat) as a ReactJS component",
+    "keywords": [
+        "nepali date picker",
+        "nepali",
+        "datepicker",
+        "bikram",
+        "sambat",
+        "bikramsambat",
+        "calender"
+    ],
+    "author": {
+        "name": "Durlav Parajuli",
+        "url": "https://github.com/iamdurlove"
+    },
+    "license": "MIT",
+    "repository": "https://github.com/puncoz-official/nepali-datepicker-reactjs",
+    "homepage": "https://puncoz-official.github.io/nepali-datepicker-reactjs",
+    "main": "dist/index.js",
+    "module": "dist/index.modern.js",
+    "style": "src/NepaliDatePicker.scss",
+    "source": "src/index.tsx",
+    "engines": {
+        "node": ">=10"
+    },
+    "scripts": {
+        "clean-modules": "rimraf node_modules",
+        "clean": "rimraf dist npm-debug.log* yarn-error.log*",
+        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\"",
+        "lint:ts": "eslint -c .eslintrc ./src/**/*.{ts,tsx}",
+        "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
+        "lint": "yarn lint:ts && yarn lint:scss",
+        "lint:fix": "yarn lint:ts --fix && yarn lint:scss --fix",
+        "test": "run-s test:unit test:lint test:build",
+        "test:build": "run-s build",
+        "test:lint": "eslint .",
+        "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+        "test:watch": "react-scripts test --env=jsdom",
+        "start": "microbundle-crl watch --no-compress --format modern,cjs --css-modules false",
+        "prebuild": "yarn clean && yarn format",
+        "build": "microbundle-crl --no-compress --format modern,cjs --css-modules false",
+        "prepare": "yarn build",
+        "version": "git add -A src",
+        "postversion": "git push && git push --tags",
+        "predeploy": "cd example && yarn install && yarn run build",
+        "deploy": "gh-pages -d example/build"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "peerDependencies": {
+        "react": "^18.2.0"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^6.6.3",
+        "@testing-library/react": "^16.3.0",
+        "@testing-library/user-event": "^14.6.1",
+        "@types/jest": "^29.5.14",
+        "@types/node": "^22.15.19",
+        "@types/react": "^19.1.4",
+        "@types/react-dom": "^19.1.5",
+        "@typescript-eslint/eslint-plugin": "^8.32.1",
+        "@typescript-eslint/parser": "^8.32.1",
+        "babel-eslint": "^10.1.0",
+        "cross-env": "^7.0.3",
+        "eslint": "^9.27.0",
+        "eslint-config-prettier": "^10.1.5",
+        "eslint-config-standard": "^17.1.0",
+        "eslint-config-standard-react": "^13.0.0",
+        "eslint-plugin-import": "^2.31.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^5.4.0",
+        "eslint-plugin-promise": "^7.2.1",
+        "eslint-plugin-react": "^7.37.5",
+        "eslint-plugin-standard": "^5.0.0",
+        "gh-pages": "^6.3.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.0.0",
+        "microbundle-crl": "^0.13.11",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^3.5.3",
+        "prettier-stylelint": "^0.4.2",
+        "react": "^19.1.0",
+        "react-scripts": "^5.0.1",
+        "rimraf": "^6.0.1",
+        "sass": "^1.89.0",
+        "stylelint": "^16.19.1",
+        "stylelint-config-standard": "^38.0.0",
+        "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
+        "stylelint-no-unsupported-browser-features": "^8.0.4",
+        "stylelint-order": "^7.0.0",
+        "stylelint-scss": "^6.12.0",
+        "typescript": "^5.8.3"
+    },
+    "files": [
+        "dist",
+        "src/NepaliDatePicker.scss"
+    ],
+    "dependencies": {
+        "bikram-sambat-js": "^1.0.2",
+        "nepali-number": "^1.0.3"
+    }
+}

@@ -1,7 +1,7 @@
-import { NepaliDatePicker } from "."
+import { NepaliDateSelector } from "."
 
 describe("NepaliDatePicker", () => {
     it("is truthy", () => {
-        expect(NepaliDatePicker).toBeTruthy()
+        expect(NepaliDateSelector).toBeTruthy()
     })
 })

@@ -1,10 +1,10 @@
 import React, { FunctionComponent, useMemo } from "react"
 import "../NepaliDateSelector.scss"
 import { ConfigProvider } from "./Config"
-import NepaliDatePicker from "./NepaliDateSelector"
-import { ENGLISH, INepaliDatePicker, NEPALI, NepaliDatePickerProps } from "./Types"
+import NepaliDateSelector from "./NepaliDateSelector"
+import { ENGLISH, INepaliDateSelector, NEPALI, NepaliDateSelectorProps } from "./Types"
 
-const NepaliDatePickerWrapper: FunctionComponent<NepaliDatePickerProps> = ({
+const NepaliDateSelectorWrapper: FunctionComponent<NepaliDateSelectorProps> = ({
     className = "",
     inputClassName = "",
     value = "",
@@ -28,7 +28,7 @@ const NepaliDatePickerWrapper: FunctionComponent<NepaliDatePickerProps> = ({
 
     return (
         <ConfigProvider maxYear={maxYear} minYear={minYear}>
-            <NepaliDatePicker
+            <NepaliDateSelector
                 {...({
                     className,
                     inputClassName,
@@ -40,10 +40,10 @@ const NepaliDatePickerWrapper: FunctionComponent<NepaliDatePickerProps> = ({
                     maxYear,
                     minYear,
                     ...restProps,
-                } as INepaliDatePicker)}
+                } as INepaliDateSelector)}
             />
         </ConfigProvider>
     )
 }
 
-export default NepaliDatePickerWrapper
+export default NepaliDateSelectorWrapper

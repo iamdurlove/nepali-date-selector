@@ -1,141 +1,155 @@
-$primary: #2096f5;
+$primary: #b80000;
 $secondary: #fff;
-$textColor: #8c8c8c;
-$text-disabled: #d8d8d8;
+$textColor: #000000;
+$text-disabled: #bfc0c0;
+$border-color: #b80000;
+$hover-bg: #f1f5fa;
+$selected-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
 
-.nepali-date-picker {
+.nepali-date-selector {
     position: relative;
 
     .calender {
-        background: $secondary none repeat scroll 0 0;
-        // border: 1px solid darken($secondary, 20%);
-        border-radius: 6px;
-        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
-        box-sizing: border-box;
+        background: $secondary;
+        border-radius: 14px;
+        border: 1.5px solid $border-color;
+        box-shadow: 0 6px 32px 0 rgba(34, 41, 69, 0.13);
         color: $textColor;
-        display: block;
-        font-family: NotoSans, sans-serif;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: normal;
-        height: auto;
-        letter-spacing: 0.2px;
-        line-height: 1.25em;
-        padding: 15px;
+        font-family: "Inter", "NotoSans", Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        padding: 22px 18px 18px 18px;
         position: absolute;
-        text-align: right;
-        user-select: none;
         left: 0;
         z-index: 9999;
+        min-width: 320px;
+        text-align: right;
+        user-select: none;
+        transition: box-shadow 0.2s;
 
         .calendar-controller {
             align-items: center;
             display: flex;
             justify-content: space-between;
             position: relative;
+            border-bottom: 1px solid $border-color;
+            padding-bottom: 12px;
 
             .date-indicator {
                 display: flex;
+                gap: 8px;
             }
 
             .control {
                 cursor: pointer;
                 position: relative;
                 text-align: center;
+                transition:
+                    color 0.2s,
+                    border 0.2s;
 
                 &.icon-today {
                     position: absolute;
-                    right: 20px;
+                    right: 18px;
+                    border-radius: 50%;
+                    width: 32px;
+                    height: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: transparent;
+                    border: 1px solid transparent;
+                    transition:
+                        background 0.2s,
+                        border 0.2s;
+
+                    &:hover {
+                        background: $primary;
+                        color: white;
+                        border: 1px solid $primary;
+                    }
                 }
 
                 &.month,
                 &.year {
-                    border: 1px solid #eee;
-                    line-height: 24px;
-                    width: 70px;
+                    border: 1.5px solid $border-color;
+                    border-radius: 7px;
+                    line-height: 22px;
+                    width: 88px;
+                    margin: 0 2px;
+                    transition: border 0.2s;
+
+                    &:hover {
+                        background: $primary;
+                        color: white;
+                        border-color: $primary;
+                    }
 
                     .current-month,
                     .current-year {
                         display: block;
-                        padding: 4px;
+                        padding: 6px 0;
+                        font-weight: 600;
+                        letter-spacing: 0.5px;
+                        // color: $primary;
                     }
                 }
 
                 &.year {
-                    border-left: none;
+                    margin-left: 8px;
                 }
 
                 .drop-down {
-                    background-color: #fff;
-                    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+                    background: $secondary;
+                    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.08);
+                    border-radius: 8px;
                     left: 0;
-                    max-height: 200px;
-                    overflow-y: scroll;
+                    max-height: 220px;
+                    overflow-y: auto;
                     position: absolute;
-                    top: 0;
+                    top: 100%;
                     width: 100%;
                     z-index: 100;
+                    margin-top: 6px;
+                    border: 1px solid $border-color;
+                    scrollbar-width: thin;
+
+                    &::-webkit-scrollbar {
+                        width: 6px;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background: #e0e7ef;
+                        border-radius: 3px;
+                    }
 
                     ul {
                         list-style: none;
                         margin: 0;
-                        padding: 0;
+                        padding: 4px 0;
                     }
 
                     li {
-                        padding: 4px 10px;
+                        padding: 8px 14px;
+                        font-size: 14px;
+                        color: $textColor;
+                        border-radius: 5px;
+                        transition:
+                            background 0.15s,
+                            color 0.15s;
+
+                        &:hover {
+                            background: $primary;
+                            color: white;
+                            background: $hover-bg;
+                            color: $primary;
+                        }
 
                         &.active {
                             background: $primary;
-                            color: #fff;
+                            color: $secondary;
+                            font-weight: 600;
                         }
                     }
-                }
-            }
-        }
-
-        td.month-day {
-            &.current {
-                opacity: 1;
-            }
-
-            &.disabled {
-                color: $text-disabled;
-            }
-
-            &.today {
-                color: #4a4a4a;
-                position: relative;
-
-                &::before {
-                    background-color: $primary;
-                    border-radius: 50%;
-                    bottom: 6px;
-                    content: "";
-                    height: 4px;
-                    left: 50%;
-                    margin: auto;
-                    position: absolute;
-                    transform: translateX(-50%);
-                    width: 4px;
-                }
-            }
-
-            &.selected {
-                color: #fff;
-                position: relative;
-
-                &::after {
-                    background: $primary;
-                    border-radius: 50%;
-                    content: "";
-                    height: 35px;
-                    left: 50%;
-                    position: absolute;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
-                    width: 35px;
-                    z-index: -1;
                 }
             }
         }
@@ -143,17 +157,102 @@ $text-disabled: #d8d8d8;
         table {
             text-align: center;
             width: 100%;
-            border: none;
+            border-collapse: separate;
+            border-spacing: 4px;
+
+            th {
+                font-weight: 700;
+                color: $textColor;
+                font-size: 12px;
+                text-transform: uppercase;
+                padding-bottom: 7px;
+                letter-spacing: 1px;
+                background: #f8fafc;
+                border-radius: 6px;
+                height: 22px;
+            }
 
             td {
                 height: 40px;
                 width: 40px;
                 border: none;
+                font-size: 15px;
+                font-weight: 600;
+                transition:
+                    background 0.2s,
+                    color 0.2s,
+                    box-shadow 0.2s;
+                cursor: pointer;
+                background: transparent;
+
+                &:hover:not(.disabled) {
+                    background: $primary;
+                    color: white;
+                }
             }
 
             tr {
                 border: none;
-                height: 36px;
+            }
+        }
+
+        td.month-day {
+            &.current {
+                opacity: 1;
+                font-weight: 700;
+                border: 1.5px solid $primary;
+                // background: lighten($primary, 44%);
+            }
+
+            &.disabled {
+                color: $text-disabled;
+                cursor: not-allowed;
+                background: #f5f5f5;
+                font-weight: 400;
+            }
+
+            &.today {
+                color: $primary;
+                position: relative;
+                font-weight: 700;
+                border: 1.5px solid $primary;
+                // background: lighten($primary, 38%);
+
+                &::before {
+                    background-color: $primary;
+                    border-radius: 50%;
+                    bottom: 7px;
+                    content: "";
+                    height: 5px;
+                    left: 50%;
+                    margin: auto;
+                    position: absolute;
+                    transform: translateX(-50%);
+                    width: 5px;
+                }
+            }
+
+            &.selected {
+                color: $secondary;
+                position: relative;
+                font-weight: 700;
+                background: $primary;
+                box-shadow: $selected-shadow;
+                border: none;
+
+                &::after {
+                    background: $primary;
+                    border-radius: 50%;
+                    content: "";
+                    height: 36px;
+                    left: 50%;
+                    position: absolute;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 36px;
+                    z-index: -1;
+                    box-shadow: $selected-shadow;
+                }
             }
         }
     }

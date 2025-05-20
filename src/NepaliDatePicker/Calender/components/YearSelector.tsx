@@ -5,12 +5,12 @@ import { useTrans } from "../../Locale"
 import { localeType, ParsedDate } from "../../Types"
 import { range } from "../../Utils/common"
 
-interface YearPickerProps {
+interface YearSelectorProps {
     date: ParsedDate
     onSelect: (year: number) => void
 }
 
-const YearPicker: FunctionComponent<YearPickerProps> = ({ date, onSelect }) => {
+const YearSelector: FunctionComponent<YearSelectorProps> = ({ date, onSelect }) => {
     const [showDropdown, setShowDropdown] = useState(false)
     const { getConfig } = useConfig()
     const { numberTrans } = useTrans(getConfig<localeType>("currentLocale"))
@@ -52,4 +52,4 @@ const YearPicker: FunctionComponent<YearPickerProps> = ({ date, onSelect }) => {
     )
 }
 
-export default YearPicker
+export default YearSelector

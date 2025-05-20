@@ -96,6 +96,39 @@ export const getNumberOfDaysInBSMonth = (yearMonth: { year: number; month: numbe
         if (year === 2081 && month === 12) {
             return CalenderData.bsMonthMaxDays[month - 1][bsMonthUpperDaysIndex] + 1
         }
+        if (year === 2082 && month === 1) {
+            return CalenderData.bsMonthMaxDays[month - 1][1] // Force index 1 to get 31 days
+        }
+
+        if (year === 2082 && month === 2) {
+            // Return 31 days for Jestha
+            return CalenderData.bsMonthMaxDays[month - 1][0] // Use index 0 to get 31 days
+        }
+
+        // Add these in getNumberOfDaysInBSMonth function after the existing BS 2082 conditions
+        if (year === 2082 && month === 3) {
+            return CalenderData.bsMonthMaxDays[month - 1][1] // Force index 1 to get 32 days for Asar
+        }
+
+        if (year === 2082 && month === 4) {
+            return CalenderData.bsMonthMaxDays[month - 1][0] // Force index 0 to get 31 days for Shrawan
+        }
+
+        if (year === 2082 && month === 6) {
+            return CalenderData.bsMonthMaxDays[month - 1][1] // Force index 1 to get 31 days for Asoj
+        }
+
+        if (year === 2082 && month === 8) {
+            return CalenderData.bsMonthMaxDays[month - 1][0] // Force index 0 to get 29 days for Mangsir
+        }
+
+        if (year === 2082 && month === 9) {
+            return CalenderData.bsMonthMaxDays[month - 1][1] // Force index 1 to get 30 days for Poush
+        }
+
+        if (year === 2082 && month === 10) {
+            return CalenderData.bsMonthMaxDays[month - 1][0] // Force index 0 to get 29 days for Magh
+        }
 
         if ((year === 2085 && month === 5) || (year === 2088 && month === 5)) {
             return CalenderData.bsMonthMaxDays[month - 1][bsMonthUpperDaysIndex] - 2
@@ -111,9 +144,43 @@ export const parseBSDate = (date: string, separator: string = "-"): ParsedDate =
     validateDateObject({ year, month, day })
 
     const adDate = new Date(BSToAD(date))
-    const firstAdDateInBSMonth = new Date(BSToAD(stitchDate({ year, month, day: 1 }, separator)))
+    let firstAdDateInBSMonth = new Date(BSToAD(stitchDate({ year, month, day: 1 }, separator)))
     const numberOfDaysInMonth = getNumberOfDaysInBSMonth({ year, month })
 
+    // Special case for BS 2082 Jestha (month 2)
+    if (year === 2082 && month === 2) {
+        // Force the first day of Jestha to have the correct weekday
+        // This ensures no overlap with the last day of Baishakh
+        // const dayOfWeek = firstAdDateInBSMonth.getDay()
+        // Shift the weekday by 1 to fix the overlap
+        firstAdDateInBSMonth = new Date(firstAdDateInBSMonth)
+        firstAdDateInBSMonth.setDate(firstAdDateInBSMonth.getDate() + 1)
+    }
+
+    // Special case for BS 2082 Shrawan (month 4)
+    if (year === 2082 && month === 4) {
+        // Fix the overlap with the last day of Asar
+        firstAdDateInBSMonth = new Date(firstAdDateInBSMonth)
+        firstAdDateInBSMonth.setDate(firstAdDateInBSMonth.getDate() + 1)
+    }
+
+    if (year === 2082 && month === 7) {
+        // Fix the overlap with the last day of Asoj
+        firstAdDateInBSMonth = new Date(firstAdDateInBSMonth)
+        firstAdDateInBSMonth.setDate(firstAdDateInBSMonth.getDate() + 1)
+    }
+
+    if (year === 2082 && month === 8) {
+        // Fix the overlap with the last day of Kartik
+        firstAdDateInBSMonth = new Date(firstAdDateInBSMonth)
+        firstAdDateInBSMonth.setDate(firstAdDateInBSMonth.getDate() + 1)
+    }
+
+    if (year === 2082 && month === 10) {
+        // Fix the overlap with the last day of Poush
+        firstAdDateInBSMonth = new Date(firstAdDateInBSMonth)
+        firstAdDateInBSMonth.setDate(firstAdDateInBSMonth.getDate() + 1)
+    }
     return {
         adDate,
         bsDay: day,

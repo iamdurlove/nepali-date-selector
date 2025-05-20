@@ -1,14 +1,14 @@
 import { ADToBS } from "bikram-sambat-js"
 import React, { Fragment, FunctionComponent, useCallback, useEffect, useState } from "react"
-import { NepaliDatepickerEvents, ParsedDate, parsedDateInitialValue, SplittedDate } from "../Types"
+import { NepaliDateSelectorEvents, ParsedDate, parsedDateInitialValue, SplittedDate } from "../Types"
 import { executionDelegation, parseBSDate, stitchDate } from "../Utils/common"
 import CalenderController from "./components/CalenderController"
-import { DayPicker } from "./components/DayPicker"
+import { DaySelector } from "./components/DaySelector"
 import { useConfig } from "../Config"
 
 interface CalenderProps {
     value: string | null
-    events: NepaliDatepickerEvents
+    events: NepaliDateSelectorEvents
 }
 
 const Calender: FunctionComponent<CalenderProps> = ({ value, events }) => {
@@ -209,7 +209,7 @@ const Calender: FunctionComponent<CalenderProps> = ({ value, events }) => {
                             onMonthSelect={onMonthSelectHandler}
                         />
 
-                        <DayPicker
+                        <DaySelector
                             selectedDate={selectedDate}
                             calenderDate={calenderDate}
                             onDaySelect={onDaySelectHandler}

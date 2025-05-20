@@ -3,8 +3,8 @@ import { useConfig } from "../../Config"
 import { NextIcon, PreviousIcon, TodayIcon } from "../../Icons"
 import { useTrans } from "../../Locale"
 import { localeType, ParsedDate } from "../../Types"
-import MonthPicker from "./MonthPicker"
-import YearPicker from "./YearPicker"
+import MonthSelector from "./MonthSelector"
+import YearSelector from "./YearSelector"
 
 interface CalenderControllerProps {
     onNextMonth: () => void
@@ -27,8 +27,8 @@ const CalenderController: FunctionComponent<CalenderControllerProps> = (props) =
             </span>
 
             <div className='date-indicator'>
-                <MonthPicker date={calenderDate} onSelect={onMonthSelect} />
-                <YearPicker date={calenderDate} onSelect={onYearSelect} />
+                <MonthSelector date={calenderDate} onSelect={onMonthSelect} />
+                <YearSelector date={calenderDate} onSelect={onYearSelect} />
             </div>
 
             <span className='control icon icon-today' title={trans("today")} onClick={onToday}>

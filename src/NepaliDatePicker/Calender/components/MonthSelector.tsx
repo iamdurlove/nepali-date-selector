@@ -3,12 +3,12 @@ import { CalenderData, useConfig } from "../../Config"
 import { DropDown, OptionType } from "../../DropDown"
 import { localeType, ParsedDate } from "../../Types"
 
-interface MonthPickerProps {
+interface MonthSelectorProps {
     date: ParsedDate
     onSelect: (year: number) => void
 }
 
-const MonthPicker: FunctionComponent<MonthPickerProps> = ({ date, onSelect }) => {
+const MonthSelector: FunctionComponent<MonthSelectorProps> = ({ date, onSelect }) => {
     const [showDropdown, setShowDropdown] = useState(false)
 
     const { getConfig } = useConfig()
@@ -45,4 +45,4 @@ const MonthPicker: FunctionComponent<MonthPickerProps> = ({ date, onSelect }) =>
     )
 }
 
-export default MonthPicker
+export default MonthSelector

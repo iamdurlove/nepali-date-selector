@@ -5,7 +5,7 @@ import { useTrans } from "../../../Locale"
 import { localeType, ParsedDate, SplittedDate } from "../../../Types"
 import { getNumberOfDaysInBSMonth, range, splitDate } from "../../../Utils/common"
 
-interface DayPickerBodyProps {
+interface DaySelectorBodyProps {
     selectedDate: ParsedDate | null
     calenderDate: ParsedDate
     onSelect: (date: SplittedDate) => void
@@ -20,7 +20,7 @@ interface DayInfo {
     isSelected: boolean
 }
 
-const DayPickerBody: FunctionComponent<DayPickerBodyProps> = ({ selectedDate, calenderDate: date, onSelect }) => {
+const DaySelectorBody: FunctionComponent<DaySelectorBodyProps> = ({ selectedDate, calenderDate: date, onSelect }) => {
     const weeksInMonth = useMemo(
         () => Math.ceil((date.firstAdDayInBSMonth.getDay() + date.numberOfDaysInBSMonth) / 7) - 1,
         [date],
@@ -108,4 +108,4 @@ const DayPickerBody: FunctionComponent<DayPickerBodyProps> = ({ selectedDate, ca
     )
 }
 
-export default DayPickerBody
+export default DaySelectorBody

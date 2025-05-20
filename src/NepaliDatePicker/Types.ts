@@ -9,7 +9,7 @@ export const AD = "AD"
 
 export type localeType = "en" | "ne"
 
-export interface NepaliDatePickerOptions {
+export interface NepaliDateSelectorOptions {
     closeOnSelect: boolean
     calenderLocale: localeType
     valueLocale: localeType
@@ -20,35 +20,35 @@ export interface IContextProviderProps {
     children: React.ReactNode
     maxYear?: number
 }
-export interface INepaliDatePicker {
+export interface INepaliDateSelector {
     value: string
     className: HTMLAttributes<HTMLDivElement>["className"]
     inputClassName: HTMLAttributes<HTMLInputElement>["className"]
     onChange: (date: string) => void
     onSelect?: (value: string) => void
-    options: NepaliDatePickerOptions
+    options: NepaliDateSelectorOptions
     minYear?: number
     maxYear?: number
     todayIfEmpty?: boolean
 }
 
-export interface NepaliDatePickerProps {
-    value?: INepaliDatePicker["value"]
-    className?: INepaliDatePicker["className"]
-    inputClassName?: INepaliDatePicker["inputClassName"]
-    onChange?: INepaliDatePicker["onChange"]
-    onSelect?: INepaliDatePicker["onSelect"]
+export interface NepaliDateSelectorProps {
+    value?: INepaliDateSelector["value"]
+    className?: INepaliDateSelector["className"]
+    inputClassName?: INepaliDateSelector["inputClassName"]
+    onChange?: INepaliDateSelector["onChange"]
+    onSelect?: INepaliDateSelector["onSelect"]
     options?: {
-        closeOnSelect?: NepaliDatePickerOptions["closeOnSelect"]
-        calenderLocale?: NepaliDatePickerOptions["calenderLocale"]
-        valueLocale?: NepaliDatePickerOptions["valueLocale"]
+        closeOnSelect?: NepaliDateSelectorOptions["closeOnSelect"]
+        calenderLocale?: NepaliDateSelectorOptions["calenderLocale"]
+        valueLocale?: NepaliDateSelectorOptions["valueLocale"]
     }
-    minYear?: INepaliDatePicker["minYear"]
-    maxYear?: INepaliDatePicker["maxYear"]
+    minYear?: INepaliDateSelector["minYear"]
+    maxYear?: INepaliDateSelector["maxYear"]
     todayIfEmpty?: boolean
 }
 
-export interface NepaliDatepickerEvents {
+export interface NepaliDateSelectorEvents {
     change: (value: string) => void
     yearSelect?: (year: number) => void
     monthSelect?: ({ year, month }: YearMonth) => void

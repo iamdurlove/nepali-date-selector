@@ -3,14 +3,14 @@ import React, { FunctionComponent, useCallback, useEffect, useLayoutEffect, useR
 import { Calender } from "./Calender"
 import { useConfig } from "./Config"
 import { useTrans } from "./Locale"
-import { ENGLISH, INepaliDatePicker, localeType, NepaliDatepickerEvents } from "./Types"
+import { ENGLISH, INepaliDateSelector, localeType, NepaliDateSelectorEvents } from "./Types"
 import { childOf, executionDelegation, stitchDate } from "./Utils/common"
 
-const NepaliDateSelector: FunctionComponent<INepaliDatePicker> = (props) => {
+const NepaliDateSelector: FunctionComponent<INepaliDateSelector> = (props) => {
     const { className, inputClassName, value, onChange, onSelect, options, todayIfEmpty } = props
 
-    const nepaliDatePickerWrapper = useRef<HTMLDivElement>(null)
-    const nepaliDatePickerInput = useRef<HTMLInputElement>(null)
+    const nepaliDateSelectorWrapper = useRef<HTMLDivElement>(null)
+    const nepaliDateSelectorInput = useRef<HTMLInputElement>(null)
 
     const [date, setDate] = useState<string>("")
     const [showCalendar, setShowCalendar] = useState<boolean>(false)
@@ -33,7 +33,7 @@ const NepaliDateSelector: FunctionComponent<INepaliDatePicker> = (props) => {
     }, [value])
 
     const handleClickOutside = useCallback((event: any) => {
-        if (nepaliDatePickerWrapper.current && childOf(event.target, nepaliDatePickerWrapper.current)) {
+        if (nepaliDateSelectorWrapper.current && childOf(event.target, nepaliDateSelectorWrapper.current)) {
             return
         }
 
@@ -51,18 +51,18 @@ const NepaliDateSelector: FunctionComponent<INepaliDatePicker> = (props) => {
     }, [showCalendar])
 
     useLayoutEffect(() => {
-        if (showCalendar && nepaliDatePickerWrapper.current) {
-            const nepaliDatePicker = nepaliDatePickerWrapper.current.getBoundingClientRect()
+        if (showCalendar && nepaliDateSelectorWrapper.current) {
+            const nepaliDateSelector = nepaliDateSelectorWrapper.current.getBoundingClientRect()
             const screenHeight = window.innerHeight
 
-            const calender: HTMLDivElement | null = nepaliDatePickerWrapper.current.querySelector(".calender")
+            const calender: HTMLDivElement | null = nepaliDateSelectorWrapper.current.querySelector(".calender")
             if (calender) {
                 setTimeout(() => {
                     const calenderHeight = calender.clientHeight
 
-                    if (calenderHeight + nepaliDatePicker.bottom > screenHeight) {
-                        if (calenderHeight < nepaliDatePicker.top) {
-                            calender.style.bottom = `${nepaliDatePicker.height}px`
+                    if (calenderHeight + nepaliDateSelector.bottom > screenHeight) {
+                        if (calenderHeight < nepaliDateSelector.top) {
+                            calender.style.bottom = `${nepaliDateSelector.height}px`
                         }
                     }
                 }, 0)
@@ -110,23 +110,23 @@ const NepaliDateSelector: FunctionComponent<INepaliDatePicker> = (props) => {
         [onSelect],
     )
 
-    const datepickerEvents: NepaliDatepickerEvents = {
+    const dateSelectorEvents: NepaliDateSelectorEvents = {
         change: handleOnChange,
         daySelect: handleOnDaySelect,
         todaySelect: handleOnDaySelect,
     }
 
     return (
-        <div ref={nepaliDatePickerWrapper} className={`nepali-date-picker ${className}`}>
+        <div ref={nepaliDateSelectorWrapper} className={`nepali-date-selector ${className}`}>
             <input
                 type='text'
-                ref={nepaliDatePickerInput}
+                ref={nepaliDateSelectorInput}
                 className={inputClassName}
                 readOnly={true}
                 value={numberTrans(date)}
                 onClick={() => setShowCalendar((visible) => !visible)}
             />
-            {showCalendar && <Calender value={date && date} events={datepickerEvents} />}
+            {showCalendar && <Calender value={date && date} events={dateSelectorEvents} />}
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useMemo } from "react"
 import { CalenderData, useConfig } from "../../../Config"
 
-const DayPickerHeader: FunctionComponent = () => {
+const DaySelectorHeader: FunctionComponent = () => {
     const { getConfig } = useConfig()
     const currentLocale = useMemo(() => getConfig("currentLocale") as "en" | "ne", [getConfig])
 
@@ -16,4 +16,4 @@ const DayPickerHeader: FunctionComponent = () => {
     )
 }
 
-export default DayPickerHeader
+export default DaySelectorHeader

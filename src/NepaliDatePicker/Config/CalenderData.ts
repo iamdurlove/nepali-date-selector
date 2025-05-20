@@ -1,6 +1,6 @@
 export const months = {
     en: [
-        "Baisakh",
+        "Baishakh",
         "Jestha",
         "Asar",
         "Shrawan",
@@ -8,7 +8,7 @@ export const months = {
         "Asoj",
         "Kartik",
         "Mangsir",
-        "Pouse",
+        "Poush",
         "Magh",
         "Falgun",
         "Chaitra",
@@ -80,3 +80,20 @@ export const bsMonthCalculatedData = [
         1, 3, 1, 3, 1, 3, 1, 2, 2, 2, 2, 2, 2, 2, 1, 3, 1, 3, 1, 20, 3,
     ],
 ]
+
+// Special case handlers for month transitions
+export const specialMonthTransitions: Record<string, Record<string, { startingWeekday: number }>> = {
+    "2082": {
+        // First month to second month transition (Baishakh to Jestha)
+        "1-2": {
+            startingWeekday: 1, // Force Jestha 1 to start on Monday (adjust as needed)
+        },
+    },
+}
+
+// Helper to check if a month transition needs special handling
+export function needsSpecialTransitionHandling(year: number, fromMonth: number, toMonth: number): boolean {
+    return !!(
+        specialMonthTransitions[year.toString()] && specialMonthTransitions[year.toString()][`${fromMonth}-${toMonth}`]
+    )
+}

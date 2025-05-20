@@ -12,8 +12,7 @@ $selected-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
     .calender {
         background: $secondary;
         border-radius: 14px;
-        border: 1.5px solid $border-color;
-        box-shadow: 0 6px 32px 0 rgba(34, 41, 69, 0.13);
+        box-shadow: 0 6px 32px 0 rgba(8, 16, 48, 0.397);
         color: $textColor;
         font-family: "Inter", "NotoSans", Arial, sans-serif;
         font-size: 15px;
@@ -73,16 +72,17 @@ $selected-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
                 &.month,
                 &.year {
                     border: 1.5px solid $border-color;
-                    border-radius: 7px;
+                    border-radius: 4px;
                     line-height: 22px;
                     width: 88px;
                     margin: 0 2px;
                     transition: border 0.2s;
+                    background: $primary;
+                    color: white;
 
                     &:hover {
-                        background: $primary;
-                        color: white;
-                        border-color: $primary;
+                        background: white;
+                        color: $primary;
                     }
 
                     .current-month,

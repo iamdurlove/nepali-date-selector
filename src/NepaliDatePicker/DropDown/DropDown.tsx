@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useLayoutEffect } from "react"
+import React, { FunctionComponent, useLayoutEffect, useRef } from "react"
 import { OptionType } from "./Types"
 
 interface DropDownProps {
@@ -8,12 +8,14 @@ interface DropDownProps {
 }
 
 const DropDown: FunctionComponent<DropDownProps> = ({ options, value, onSelect }) => {
+    const activeRef = useRef<HTMLLIElement>(null)
+
     useLayoutEffect(() => {
-        // const elem = document.querySelector(".active")
-        // if (elem) {
-        //     elem.scrollIntoView()
-        // }
-    })
+        if (activeRef.current) {
+            activeRef.current.scrollIntoView({ block: "center" })
+        }
+    }, [value])
+
     return (
         <div className='drop-down'>
             <div className='option-wrapper'>
@@ -21,6 +23,7 @@ const DropDown: FunctionComponent<DropDownProps> = ({ options, value, onSelect }
                     {options.map((option, index) => (
                         <li
                             key={index}
+                            ref={option.value === value ? activeRef : undefined}
                             className={option.value === value ? "active" : ""}
                             onClick={() => {
                                 onSelect(option)

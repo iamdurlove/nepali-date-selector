@@ -101,7 +101,9 @@
         "src/NepaliDateSelector.scss"
     ],
     "dependencies": {
+        "@sbmdkl/nepali-date-converter": "^2.0.4",
         "bikram-sambat-js": "^1.0.2",
+        "nepali-date-converter": "^3.4.0",
         "nepali-number": "^1.0.3"
     }
 }

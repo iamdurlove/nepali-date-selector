@@ -26,14 +26,12 @@ const YearSelector: FunctionComponent<YearSelectorProps> = ({ date, onSelect }) 
 
     const years: OptionType[] = useMemo(
         (): OptionType[] =>
-            range(getConfig("minYear"), getConfig("maxYear"))
-                .reverse()
-                .map(
-                    (year: number): OptionType => ({
-                        label: numberTrans(year),
-                        value: year,
-                    }),
-                ),
+            range(getConfig("minYear"), getConfig("maxYear")).map(
+                (year: number): OptionType => ({
+                    label: numberTrans(year),
+                    value: year,
+                }),
+            ),
         [],
     )
 

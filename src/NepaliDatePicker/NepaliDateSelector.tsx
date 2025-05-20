@@ -1,10 +1,10 @@
-import { ADToBS } from "bikram-sambat-js"
 import React, { FunctionComponent, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
 import { Calender } from "./Calender"
 import { useConfig } from "./Config"
 import { useTrans } from "./Locale"
 import { ENGLISH, INepaliDateSelector, localeType, NepaliDateSelectorEvents } from "./Types"
 import { childOf, executionDelegation, stitchDate } from "./Utils/common"
+import NepaliDate from "nepali-date-converter"
 
 const NepaliDateSelector: FunctionComponent<INepaliDateSelector> = (props) => {
     const { className, inputClassName, value, onChange, onSelect, options, todayIfEmpty } = props
@@ -29,7 +29,8 @@ const NepaliDateSelector: FunctionComponent<INepaliDateSelector> = (props) => {
     }, [options.calenderLocale])
 
     useEffect(() => {
-        setDate(toEnglish(value || (todayIfEmpty ? ADToBS(new Date()) : "")))
+        const today = new NepaliDate().format("YYYY-MM-DD")
+        setDate(toEnglish(value || (todayIfEmpty ? today : "")))
     }, [value])
 
     const handleClickOutside = useCallback((event: any) => {

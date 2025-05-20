@@ -1,10 +1,10 @@
-import { ADToBS } from "bikram-sambat-js"
 import React, { Fragment, FunctionComponent, useCallback, useEffect, useState } from "react"
 import { NepaliDateSelectorEvents, ParsedDate, parsedDateInitialValue, SplittedDate } from "../Types"
 import { executionDelegation, parseBSDate, stitchDate } from "../Utils/common"
 import CalenderController from "./components/CalenderController"
 import { DaySelector } from "./components/DaySelector"
 import { useConfig } from "../Config"
+import NepaliDate from "nepali-date-converter"
 
 interface CalenderProps {
     value: string | null
@@ -25,7 +25,7 @@ const Calender: FunctionComponent<CalenderProps> = ({ value, events }) => {
             setCalenderDate(parsedDateValue)
         } else {
             // Set to current date if no valid value is provided
-            const today = parseBSDate(ADToBS(new Date()))
+            const today = parseBSDate(new NepaliDate().format("YYYY-MM-DD"))
             setCalenderDate(today)
             setSelectedDate(null)
         }
@@ -112,7 +112,7 @@ const Calender: FunctionComponent<CalenderProps> = ({ value, events }) => {
     }, [])
 
     const onTodayClickHandler = useCallback(() => {
-        const today = parseBSDate(ADToBS(new Date()))
+        const today = parseBSDate(new NepaliDate().format("YYYY-MM-DD"))
 
         executionDelegation(
             () => {

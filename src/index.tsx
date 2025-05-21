@@ -1,1 +1,1 @@
-export { default as NepaliDateSelector } from "./NepaliDatePicker"
+export { default as NepaliDateSelector } from "./NepaliDateSelector"

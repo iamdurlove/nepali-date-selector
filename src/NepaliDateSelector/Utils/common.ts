@@ -1,4 +1,3 @@
-import { BSToAD } from "bikram-sambat-js"
 import { CalenderData } from "../Config"
 import { BS, ParsedDate, SplittedDate, voidFunction } from "../Types"
 import {
@@ -9,6 +8,8 @@ import {
     validateBsMonth,
     validateBsYear,
 } from "./DateValidations"
+import NepaliDate from "nepali-date-converter"
+import { BSToAD } from "bikram-sambat-js"
 
 export const range = (start: number, end: number, step: number = 1): number[] => {
     const list = []
@@ -143,8 +144,12 @@ export const parseBSDate = (date: string, separator: string = "-"): ParsedDate =
 
     validateDateObject({ year, month, day })
 
-    const adDate = new Date(BSToAD(date))
+    const myDate = new NepaliDate(date).getDateObject().AD
+
+    const adDate = new Date(`${myDate.year}-${myDate.month}-${myDate.day}`)
+
     let firstAdDateInBSMonth = new Date(BSToAD(stitchDate({ year, month, day: 1 }, separator)))
+    console.log(firstAdDateInBSMonth)
     const numberOfDaysInMonth = getNumberOfDaysInBSMonth({ year, month })
 
     // Special case for BS 2082 Jestha (month 2)

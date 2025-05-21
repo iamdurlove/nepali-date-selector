@@ -1,9 +1,9 @@
-import { ADToBS } from "bikram-sambat-js"
 import React, { FunctionComponent, useCallback, useMemo } from "react"
 import { CalenderData, useConfig } from "../../../Config"
 import { useTrans } from "../../../Locale"
 import { localeType, ParsedDate, SplittedDate } from "../../../Types"
 import { getNumberOfDaysInBSMonth, range, splitDate } from "../../../Utils/common"
+import NepaliDate from "nepali-date-converter"
 
 interface DaySelectorBodyProps {
     selectedDate: ParsedDate | null
@@ -57,7 +57,7 @@ const DaySelectorBody: FunctionComponent<DaySelectorBodyProps> = ({ selectedDate
                 isCurrentMonth = false
             }
 
-            const today = splitDate(ADToBS(new Date()))
+            const today = splitDate(new NepaliDate().format("YYYY-MM-DD"))
 
             const isToday = isCurrentMonth
                 ? today.day === day && today.month === date.bsMonth && today.year === date.bsYear

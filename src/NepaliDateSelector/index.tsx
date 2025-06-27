@@ -1,22 +1,26 @@
-import React, { FunctionComponent, useMemo } from "react"
+import * as React from "react" // Use this import style
+import type { JSX } from "react"
 import "../NepaliDateSelector.scss"
 import { ConfigProvider } from "./Config"
-import NepaliDateSelector from "./NepaliDateSelector"
+import NepaliDateSelectorComponent from "./NepaliDateSelector"
 import { ENGLISH, INepaliDateSelector, NEPALI, NepaliDateSelectorProps } from "./Types"
 
-const NepaliDateSelectorWrapper: FunctionComponent<NepaliDateSelectorProps> = ({
-    className = "",
-    inputClassName = "",
-    value = "",
-    onChange = () => null,
-    onSelect = () => null,
-    options = {},
-    todayIfEmpty = false,
-    maxYear,
-    minYear,
-    ...restProps
-}) => {
-    const calenderOptions = useMemo(
+// Using a standard function with explicit return type instead of FunctionComponent
+const NepaliDateSelectorWrapper = (props: NepaliDateSelectorProps): JSX.Element => {
+    const {
+        className = "",
+        inputClassName = "",
+        value = "",
+        onChange = () => null,
+        onSelect = () => null,
+        options = {},
+        todayIfEmpty = false,
+        maxYear,
+        minYear,
+        ...restProps
+    } = props
+
+    const calenderOptions = React.useMemo(
         () => ({
             closeOnSelect: true,
             calenderLocale: NEPALI,
@@ -28,7 +32,7 @@ const NepaliDateSelectorWrapper: FunctionComponent<NepaliDateSelectorProps> = ({
 
     return (
         <ConfigProvider maxYear={maxYear} minYear={minYear}>
-            <NepaliDateSelector
+            <NepaliDateSelectorComponent
                 {...({
                     className,
                     inputClassName,

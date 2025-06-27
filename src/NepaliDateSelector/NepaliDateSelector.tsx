@@ -119,15 +119,49 @@ const NepaliDateSelector: FunctionComponent<INepaliDateSelector> = (props) => {
 
     return (
         <div ref={nepaliDateSelectorWrapper} className={`nepali-date-selector ${className}`}>
-            <input
-                type='text'
-                ref={nepaliDateSelectorInput}
-                className={inputClassName}
-                readOnly={true}
-                value={numberTrans(date)}
-                onClick={() => setShowCalendar((visible) => !visible)}
-            />
-            {showCalendar && <Calender value={date && date} events={dateSelectorEvents} />}
+            <div style={{ position: "relative", display: "inline-block" }}>
+                <input
+                    type='text'
+                    ref={nepaliDateSelectorInput}
+                    className={`nepali-date-input ${inputClassName || ""}`}
+                    placeholder='YYYY-MM-DD'
+                    value={date}
+                    onClick={() => setShowCalendar((visible) => !visible)}
+                    onChange={(e) => {
+                        setDate(toEnglish(e.target.value))
+                    }}
+                    onBlur={(e) => {
+                        const val = toEnglish(e.target.value)
+                        if (/^\d{4}-\d{2}-\d{2}$/.test(val)) {
+                            handleOnChange(val)
+                        }
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            const val = toEnglish((e.target as HTMLInputElement).value)
+                            if (/^\d{4}-\d{2}-\d{2}$/.test(val)) {
+                                handleOnChange(val)
+                                setShowCalendar(false)
+                            }
+                        }
+                    }}
+                />
+                <span
+                    style={{
+                        position: "absolute",
+                        right: 12,
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        color: "#b80000",
+                        pointerEvents: "none",
+                    }}
+                >
+                    📅
+                </span>
+            </div>
+            {showCalendar && (
+                <Calender value={/^\d{4}-\d{2}-\d{2}$/.test(date) ? date : ""} events={dateSelectorEvents} />
+            )}
         </div>
     )
 }

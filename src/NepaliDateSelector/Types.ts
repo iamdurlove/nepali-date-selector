@@ -30,6 +30,7 @@ export interface INepaliDateSelector {
     minYear?: number
     maxYear?: number
     todayIfEmpty?: boolean
+    inputStyle?: React.CSSProperties
 }
 
 export interface NepaliDateSelectorProps {

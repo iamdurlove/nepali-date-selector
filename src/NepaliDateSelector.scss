@@ -289,7 +289,7 @@ $selected-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
     }
 
     .nepali-date-input {
-        width: 160px;
+        width: 120px;
         padding: 8px 12px;
         border: 1.5px solid #b80000;
         border-radius: 6px;
@@ -310,9 +310,9 @@ $selected-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
 
         &::placeholder {
             color: #bfc0c0;
-            opacity: 1;
             font-size: 15px;
             letter-spacing: 1px;
+            opacity: 1;
         }
     }
 }

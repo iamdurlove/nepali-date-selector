@@ -7,7 +7,7 @@ import { childOf, executionDelegation, stitchDate } from "./Utils/common"
 import NepaliDate from "nepali-date-converter"
 
 const NepaliDateSelector: FunctionComponent<INepaliDateSelector> = (props) => {
-    const { className, inputClassName, value, onChange, onSelect, options, todayIfEmpty } = props
+    const { className, inputClassName, value, onChange, onSelect, options, todayIfEmpty, inputStyle } = props
 
     const nepaliDateSelectorWrapper = useRef<HTMLDivElement>(null)
     const nepaliDateSelectorInput = useRef<HTMLInputElement>(null)
@@ -145,19 +145,26 @@ const NepaliDateSelector: FunctionComponent<INepaliDateSelector> = (props) => {
                             }
                         }
                     }}
+                    style={{
+                        ...inputStyle,
+                    }}
                 />
-                <span
+                {/* <span
                     style={{
                         position: "absolute",
                         right: 12,
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#b80000",
-                        pointerEvents: "none",
+                        cursor: "pointer",
+                        fontSize: 20,
+                        display: "flex",
+                        alignItems: "center",
                     }}
-                >
-                    📅
-                </span>
+                    onClick={() => setShowCalendar((visible) => !visible)}
+                    tabIndex={-1}
+                    aria-label='Toggle calendar'
+                ></span> */}
             </div>
             {showCalendar && (
                 <Calender value={/^\d{4}-\d{2}-\d{2}$/.test(date) ? date : ""} events={dateSelectorEvents} />

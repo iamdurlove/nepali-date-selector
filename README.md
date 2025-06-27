@@ -5,7 +5,7 @@
 [![NPM](https://img.shields.io/npm/v/nepali-date-selector.svg)](https://www.npmjs.com/package/nepali-date-selector)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## [Live Demo](https://iamdurlove.github.io/nepali-date-selector/)
+## [Live Demo](https://nepalidateselector.durlavparajuli.com.np/)
 
 ![NepaliDateSelector Demo](example.png)
 
@@ -192,14 +192,14 @@ This prop accepts a standard React [CSSProperties](https://react.dev/reference/r
 
 ### Scripts
 
-| Command       | Description                     |
-| ------------- | ------------------------------- |
-| `yarn start`  | Start development build (watch) |
-| `yarn build`  | Build for production            |
-| `yarn test`   | Run all tests                   |
-| `yarn lint`   | Lint TypeScript and SCSS        |
-| `yarn format` | Format code with Prettier       |
-| `yarn clean`  | Remove build artifacts          |
+| Command          | Description                     |
+| ---------------- | ------------------------------- |
+| `npm start`      | Start development build (watch) |
+| `npm run build`  | Build for production            |
+| `npm test`       | Run all tests                   |
+| `npm run lint`   | Lint TypeScript and SCSS        |
+| `npm run format` | Format code with Prettier       |
+| `npm run clean`  | Remove build artifacts          |
 
 ### Project Structure
 

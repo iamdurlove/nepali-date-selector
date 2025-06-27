@@ -289,19 +289,6 @@ $selected-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
     }
 
     .nepali-date-input {
-        width: 120px;
-        padding: 8px 12px;
-        border: 1.5px solid #b80000;
-        border-radius: 6px;
-        font-size: 16px;
-        color: #222;
-        background: #fff;
-        transition:
-            border-color 0.2s,
-            box-shadow 0.2s;
-        outline: none;
-        box-shadow: 0 1px 4px rgba(184, 0, 0, 0.04);
-
         &:focus {
             border-color: #7a0c0c;
             box-shadow: 0 2px 8px rgba(184, 0, 0, 0.1);

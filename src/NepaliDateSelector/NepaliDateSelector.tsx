@@ -149,22 +149,6 @@ const NepaliDateSelector: FunctionComponent<INepaliDateSelector> = (props) => {
                         ...inputStyle,
                     }}
                 />
-                {/* <span
-                    style={{
-                        position: "absolute",
-                        right: 12,
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        color: "#b80000",
-                        cursor: "pointer",
-                        fontSize: 20,
-                        display: "flex",
-                        alignItems: "center",
-                    }}
-                    onClick={() => setShowCalendar((visible) => !visible)}
-                    tabIndex={-1}
-                    aria-label='Toggle calendar'
-                ></span> */}
             </div>
             {showCalendar && (
                 <Calender value={/^\d{4}-\d{2}-\d{2}$/.test(date) ? date : ""} events={dateSelectorEvents} />

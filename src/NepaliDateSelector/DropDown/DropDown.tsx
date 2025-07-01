@@ -5,7 +5,6 @@ interface DropDownProps {
     options: OptionType[]
     value: number
     onSelect: (selected: OptionType) => void
-    inputRef?: React.RefObject<HTMLInputElement | null> // <-- allow null
 }
 
 const DropDown: FunctionComponent<DropDownProps> = ({ options, value, onSelect }) => {
@@ -31,7 +30,7 @@ const DropDown: FunctionComponent<DropDownProps> = ({ options, value, onSelect }
                             ref={option.value === value ? activeRef : undefined}
                             className={option.value === value ? "active" : ""}
                             onMouseDown={(e) => {
-                                e.preventDefault() // <-- This prevents input blur!
+                                e.stopPropagation() // Prevents dropdown closure due to parent events
                                 handleDropdownView(option)
                             }}
                         >

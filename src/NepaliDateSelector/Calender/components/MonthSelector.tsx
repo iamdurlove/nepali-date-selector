@@ -5,7 +5,7 @@ import { localeType, ParsedDate } from "../../Types"
 
 interface MonthSelectorProps {
     date: ParsedDate
-    onSelect: (year: number) => void
+    onSelect: (month: number) => void
 }
 
 const MonthSelector: FunctionComponent<MonthSelectorProps> = ({ date, onSelect }) => {
@@ -31,12 +31,12 @@ const MonthSelector: FunctionComponent<MonthSelectorProps> = ({ date, onSelect }
     }, [currentLocale])
 
     const handleDropdownView = (selected: OptionType) => {
-        setShowDropdown(!showDropdown)
-        onSelect(selected.value)
+        onSelect(selected.value) // Trigger the onSelect callback
+        setShowDropdown(false) // Explicitly close the dropdown after selection
     }
 
     return (
-        <div className='control month'>
+        <div className='control month' onMouseDown={(e) => e.stopPropagation()}>
             <span className='current-month' onClick={() => setShowDropdown(!showDropdown)}>
                 {currentMonth.label}
             </span>

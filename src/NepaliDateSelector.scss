@@ -287,19 +287,4 @@ $selected-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
             }
         }
     }
-
-    .nepali-date-input {
-        &:focus {
-            border-color: #7a0c0c;
-            box-shadow: 0 2px 8px rgba(184, 0, 0, 0.1);
-            background: #f9f6f6;
-        }
-
-        &::placeholder {
-            color: #bfc0c0;
-            font-size: 15px;
-            letter-spacing: 1px;
-            opacity: 1;
-        }
-    }
 }
